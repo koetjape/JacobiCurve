@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21C89D14254361D000557797 /* JacobiQuartic.c in Sources */ = {isa = PBXBuildFile; fileRef = 21C89D13254361D000557797 /* JacobiQuartic.c */; };
 		21D62CF52540459C00B4AD3D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 21D62CF42540459C00B4AD3D /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +24,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2163146C2543111B00ED57D2 /* JacobiQuartic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JacobiQuartic.h; sourceTree = "<group>"; };
+		216314742543208C00ED57D2 /* parameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parameters.h; sourceTree = "<group>"; };
+		21C89D13254361D000557797 /* JacobiQuartic.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = JacobiQuartic.c; sourceTree = "<group>"; };
 		21D62CF12540459C00B4AD3D /* elliptic_curve */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = elliptic_curve; sourceTree = BUILT_PRODUCTS_DIR; };
 		21D62CF42540459C00B4AD3D /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		21D62CFD2540590100B4AD3D /* 1.1.1h */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 1.1.1h; path = "../../../../../usr/local/Cellar/openssl@1.1/1.1.1h"; sourceTree = "<group>"; };
+		21D62CFE2540595100B4AD3D /* bn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bn.h; path = "../../../../../usr/local/Cellar/openssl@1.1/1.1.1h/include/openssl/bn.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			children = (
 				21D62CF32540459C00B4AD3D /* elliptic_curve */,
 				21D62CF22540459C00B4AD3D /* Products */,
+				21D62CFC2540590100B4AD3D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +65,20 @@
 			isa = PBXGroup;
 			children = (
 				21D62CF42540459C00B4AD3D /* main.c */,
+				2163146C2543111B00ED57D2 /* JacobiQuartic.h */,
+				216314742543208C00ED57D2 /* parameters.h */,
+				21C89D13254361D000557797 /* JacobiQuartic.c */,
 			);
 			path = elliptic_curve;
+			sourceTree = "<group>";
+		};
+		21D62CFC2540590100B4AD3D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21D62CFE2540595100B4AD3D /* bn.h */,
+				21D62CFD2540590100B4AD3D /* 1.1.1h */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D62CF52540459C00B4AD3D /* main.c in Sources */,
+				21C89D14254361D000557797 /* JacobiQuartic.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,7 +148,7 @@
 		21D62CF62540459C00B4AD3D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -187,7 +207,7 @@
 		21D62CF72540459C00B4AD3D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -240,7 +260,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/openssl@1.1/1.1.1h/include";
+				LIBRARY_SEARCH_PATHS = (
+					"/usr/local/Cellar/openssl@1.1/1.1.1h/lib",
+					"/usr/local/Cellar/openssl@1.1/1.1.1h/lib",
+					"/usr/local/Cellar/openssl@1.1/1.1.1h/lib",
+				);
+				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -248,7 +276,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "/usr/local/Cellar/openssl@1.1/1.1.1h/include";
+				LIBRARY_SEARCH_PATHS = (
+					"/usr/local/Cellar/openssl@1.1/1.1.1h/lib",
+					"/usr/local/Cellar/openssl@1.1/1.1.1h/lib",
+					"/usr/local/Cellar/openssl@1.1/1.1.1h/lib",
+				);
+				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
