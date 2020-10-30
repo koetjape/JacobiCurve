@@ -1,10 +1,3 @@
-//
-//  JacobiQuartic.c
-//  elliptic_curve
-//
-//  Created by Андрей Фомин on 23.10.2020.
-//
-
 #include <stdio.h>
 #include "JacobiQuartic.h"
 #include "parameters.h"
