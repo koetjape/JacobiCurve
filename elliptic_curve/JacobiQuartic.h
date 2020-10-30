@@ -11,7 +11,8 @@ struct MyPoint {
 };
 
 struct JacobiCurve {
-    // модуль, задан в parameters.h
+    // параметры заданы в parameters.h
+    // модуль p
     BIGNUM * p;
     
     // тета, найденное с помощью вольфрама
@@ -24,11 +25,12 @@ struct JacobiCurve {
     // параметры для кривой в форме Вейерштрасса в аффинных координатах, заданы в parameters.h
     BIGNUM * aCanon;
     BIGNUM * bCanon;
+    // координаты порождающей точки в форме квадрики Якоби в проективных координатах
     BIGNUM * xJac;
     BIGNUM * yJac;
     BIGNUM * zJac;
     
-    // точка на кривой в форме Вейерштрасса в проективной форме, заданы в parameters.h
+    // координаты порождающей точки в форме Вейерштрасса в аффинных координатах, заданы в parameters.h
     BIGNUM * xCanon;
     BIGNUM * yCanon;
     
@@ -54,16 +56,16 @@ void printPointProjective(const struct MyPoint * myPoint);
 // вывод просто BIGNUM
 void printBignum(const BIGNUM * bn);
 
-// освобождение точки
+// освобождает память, занимаемую точкой myPoint
 void freeMyPoint(struct MyPoint * myPoint);
 
-// освобождает кривую Якоби
+// освобождает память, занимаемую структурой JacobiCurve
 void freeJacobiQuartic(struct JacobiCurve * jacCurve);
 
 // проверяет, лежит ли точка на кривой; возвращает 0, если лежит и 1, -1 если не лежит
 int checkPointIsOnCurve(const struct MyPoint * point,const struct JacobiCurve * jacCurve);
 
-// сложение двух точек с использованием алгоритма Лесенки Монтгомери
+// вычисление кратной точки с помощью алгоритма Монтгомери
 void montgomeryLadder(struct MyPoint * result,const struct MyPoint * myPoint,const BIGNUM * pow,const struct JacobiCurve * jacobiCurve);
 
 // перевод в аффинные координаты

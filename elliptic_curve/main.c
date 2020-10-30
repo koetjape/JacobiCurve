@@ -1,10 +1,3 @@
-//
-//  main.c
-//  elliptic_curve
-//
-//  Created by Андрей Фомин on 21.10.2020.
-//
-
 #include <stdio.h>
 #include <openssl/bn.h>
 #include "JacobiQuartic.h"
@@ -35,15 +28,27 @@ int main(int argc, const char * argv[]) {
     struct JacobiCurve jacobiCurve = {};
     initJacobiCurve(&jacobiCurve);
     
+    // точка P
+    struct MyPoint P = {};
+    createBasePoint(&P, &jacobiCurve);
+    
+    printf("############################################\n\n");
+    printf("e = ");
+    printBignum(jacobiCurve.eJac);
+    printf("d = ");
+    printBignum(jacobiCurve.dJac);
+    printf("p = ");
+    printBignum(jacobiCurve.p);
+    printf("Координаты порождающей точки в проективных координатах для кривой в форме квадрики Якоби: \n");
+    printPointProjective(&P);
+    printf("\n############################################\n\n");
+    
+    
     BIGNUM * var1 = BN_new();
     struct MyPoint var2 = {};
     struct MyPoint var3 = {};
     BIGNUM * var4 = BN_new();
     struct MyPoint var5 = {};
-    BN_CTX * bnCtx = BN_CTX_new();
-    // точка P
-    struct MyPoint P = {};
-    createBasePoint(&P, &jacobiCurve);
     // задаем верхнюю границу для генерации случайных чисел
     // генерируемые числа будут в диапазон 0 <= сгенерированное число < maxrand
     BIGNUM * high = BN_new();
@@ -143,5 +148,16 @@ int main(int argc, const char * argv[]) {
     
     // непосредственно проверяем, что [k1]P + [k2]P = [k1 + k2]P
     printResultPointsComparison(twoPointsComparison(&var2, &var3, &jacobiCurve));
+    
+    
+    BN_free(var1);
+    freeMyPoint(&var2);
+    freeMyPoint(&var3);
+    BN_free(var4);
+    freeMyPoint(&var5);
+    freeMyPoint(&P);
+    freeJacobiQuartic(&jacobiCurve);
+    
+    
     return 0;
 }

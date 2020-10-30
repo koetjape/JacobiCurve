@@ -319,7 +319,7 @@ void toAffineCoordinates (struct MyPoint *res, const struct MyPoint *myPoint, co
     BN_free (z);
     BN_CTX_free (tmp);
 }
-// делаем myPoint "базовой" точкой в проективных координатах
+// делаем myPoint "порождающей" точкой в проективных координатах
 void createBasePoint(struct MyPoint * myPoint,const struct JacobiCurve * jacobiCurve){
     myPoint->X = BN_dup(jacobiCurve->xJac);
     myPoint->Y = BN_dup(jacobiCurve->yJac);
@@ -345,7 +345,7 @@ int twoPointsComparison(const struct MyPoint * myPoint1, const struct MyPoint * 
     }
     return result;
 }
-// создаем противоположную точку
+// создаем обратную точку для точки from
 // from : (X, Y, Z), to : (-X, Y, Z)
 void createNegativePoint(struct MyPoint * to, const struct MyPoint * from){
     to->X = BN_dup(from->X);
